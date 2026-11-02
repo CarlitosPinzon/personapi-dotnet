@@ -1,0 +1,51 @@
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="text-center">
+    <h1 class="display-5">PersonAPI</h1>
+    <p class="lead">Monolito ASP.NET Core MVC con patron DAO sobre SQL Server.</p>
+</div>
+
+<div class="row row-cols-1 row-cols-md-4 g-3 mt-3">
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Personas</h5>
+                <p class="card-text">Registro de personas por cedula.</p>
+                <a asp-controller="Personas" asp-action="Index" class="btn btn-primary">Ver</a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Profesiones</h5>
+                <p class="card-text">Catalogo de profesiones.</p>
+                <a asp-controller="Profesiones" asp-action="Index" class="btn btn-primary">Ver</a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Estudios</h5>
+                <p class="card-text">Profesiones estudiadas por cada persona.</p>
+                <a asp-controller="Estudios" asp-action="Index" class="btn btn-primary">Ver</a>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card h-100">
+            <div class="card-body">
+                <h5 class="card-title">Telefonos</h5>
+                <p class="card-text">Telefonos y su propietario.</p>
+                <a asp-controller="Telefonos" asp-action="Index" class="btn btn-primary">Ver</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p class="text-center mt-4">
+    La documentacion de la API REST esta disponible en <a href="/swagger">/swagger</a>.
+</p>
