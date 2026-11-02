@@ -1,0 +1,27 @@
+@model PersonaDto
+
+@{
+    ViewData["Title"] = "Nueva persona";
+}
+
+<h1>Nueva persona</h1>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3">
+                <label asp-for="Cc" class="form-label"></label>
+                <input asp-for="Cc" class="form-control" />
+                <span asp-validation-for="Cc" class="text-danger"></span>
+            </div>
+            <partial name="_Form" model="Model" />
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a asp-action="Index" class="btn btn-secondary">Volver</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

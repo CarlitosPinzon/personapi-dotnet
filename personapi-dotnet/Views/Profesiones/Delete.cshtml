@@ -1,0 +1,25 @@
+@model Profesion
+
+@{
+    ViewData["Title"] = "Eliminar profesion";
+}
+
+<h1>Eliminar profesion</h1>
+
+<div class="alert alert-warning">
+    Se eliminara la profesion y los @Model.Estudios.Count estudio(s) asociados. Esta seguro?
+</div>
+
+<dl class="row">
+    <dt class="col-sm-2">Id</dt>
+    <dd class="col-sm-10">@Model.Id</dd>
+    <dt class="col-sm-2">Nombre</dt>
+    <dd class="col-sm-10">@Model.Nom</dd>
+    <dt class="col-sm-2">Descripcion</dt>
+    <dd class="col-sm-10">@Model.Des</dd>
+</dl>
+
+<form asp-action="Delete" asp-route-id="@Model.Id">
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

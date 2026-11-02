@@ -1,0 +1,41 @@
+@model EstudioDto
+
+@{
+    ViewData["Title"] = "Editar estudio";
+}
+
+<h1>Editar estudio</h1>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdProf" />
+            <input type="hidden" asp-for="CcPer" />
+            <div class="mb-3">
+                <label class="form-label">Persona</label>
+                <input class="form-control" value="@Model.CcPer - @ViewBag.NombrePersona" readonly />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Profesion</label>
+                <input class="form-control" value="@ViewBag.NombreProfesion" readonly />
+            </div>
+            <div class="mb-3">
+                <label asp-for="Univer" class="form-label"></label>
+                <input asp-for="Univer" class="form-control" />
+                <span asp-validation-for="Univer" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Fecha" class="form-label"></label>
+                <input asp-for="Fecha" type="date" class="form-control" />
+                <span asp-validation-for="Fecha" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            <a asp-action="Index" class="btn btn-secondary">Volver</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

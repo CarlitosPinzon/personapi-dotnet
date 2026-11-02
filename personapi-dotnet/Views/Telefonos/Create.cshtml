@@ -1,0 +1,38 @@
+@model TelefonoDto
+
+@{
+    ViewData["Title"] = "Nuevo telefono";
+}
+
+<h1>Nuevo telefono</h1>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="mb-3">
+                <label asp-for="Num" class="form-label"></label>
+                <input asp-for="Num" class="form-control" />
+                <span asp-validation-for="Num" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Oper" class="form-label"></label>
+                <input asp-for="Oper" class="form-control" />
+                <span asp-validation-for="Oper" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Duenio" class="form-label"></label>
+                <select asp-for="Duenio" asp-items="ViewBag.Personas" class="form-select">
+                    <option value="">-- Seleccione --</option>
+                </select>
+                <span asp-validation-for="Duenio" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a asp-action="Index" class="btn btn-secondary">Volver</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,34 @@
+@model Profesion
+
+@{
+    ViewData["Title"] = "Detalle de profesion";
+}
+
+<h1>@Model.Nom</h1>
+<hr />
+<dl class="row">
+    <dt class="col-sm-2">Id</dt>
+    <dd class="col-sm-10">@Model.Id</dd>
+    <dt class="col-sm-2">Descripcion</dt>
+    <dd class="col-sm-10">@Model.Des</dd>
+</dl>
+
+<h4>Personas que la estudiaron</h4>
+@if (Model.Estudios.Any())
+{
+    <ul>
+        @foreach (var e in Model.Estudios)
+        {
+            <li>@e.CcPerNavigation.Nombre @e.CcPerNavigation.Apellido - @e.Univer</li>
+        }
+    </ul>
+}
+else
+{
+    <p class="text-muted">Ninguna persona tiene registrada esta profesion.</p>
+}
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-primary">Editar</a>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</div>

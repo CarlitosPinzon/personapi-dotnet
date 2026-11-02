@@ -1,0 +1,45 @@
+@model EstudioDto
+
+@{
+    ViewData["Title"] = "Nuevo estudio";
+}
+
+<h1>Nuevo estudio</h1>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="mb-3">
+                <label asp-for="CcPer" class="form-label"></label>
+                <select asp-for="CcPer" asp-items="ViewBag.Personas" class="form-select">
+                    <option value="">-- Seleccione --</option>
+                </select>
+                <span asp-validation-for="CcPer" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="IdProf" class="form-label"></label>
+                <select asp-for="IdProf" asp-items="ViewBag.Profesiones" class="form-select">
+                    <option value="">-- Seleccione --</option>
+                </select>
+                <span asp-validation-for="IdProf" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Univer" class="form-label"></label>
+                <input asp-for="Univer" class="form-control" />
+                <span asp-validation-for="Univer" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Fecha" class="form-label"></label>
+                <input asp-for="Fecha" type="date" class="form-control" />
+                <span asp-validation-for="Fecha" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-success">Guardar</button>
+            <a asp-action="Index" class="btn btn-secondary">Volver</a>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

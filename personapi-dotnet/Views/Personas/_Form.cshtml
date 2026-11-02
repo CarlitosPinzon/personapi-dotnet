@@ -1,0 +1,24 @@
+@model PersonaDto
+
+<div class="mb-3">
+    <label asp-for="Nombre" class="form-label"></label>
+    <input asp-for="Nombre" class="form-control" />
+    <span asp-validation-for="Nombre" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Apellido" class="form-label"></label>
+    <input asp-for="Apellido" class="form-control" />
+    <span asp-validation-for="Apellido" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Genero" class="form-label"></label>
+    <select asp-for="Genero" asp-items="ViewBag.Generos" class="form-select">
+        <option value="">-- Seleccione --</option>
+    </select>
+    <span asp-validation-for="Genero" class="text-danger"></span>
+</div>
+<div class="mb-3">
+    <label asp-for="Edad" class="form-label"></label>
+    <input asp-for="Edad" class="form-control" />
+    <span asp-validation-for="Edad" class="text-danger"></span>
+</div>
