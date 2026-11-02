@@ -1,0 +1,45 @@
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2025-latest
+    container_name: persona-sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Express"
+      MSSQL_SA_PASSWORD: "Arqui2026*Lab"
+    ports:
+      - "1433:1433"
+    volumes:
+      - persona-data:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P \"$$MSSQL_SA_PASSWORD\" -C -Q \"SELECT 1\" || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+
+  db-init:
+    image: mcr.microsoft.com/mssql/server:2025-latest
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./scripts:/scripts:ro
+    entrypoint: >
+      /opt/mssql-tools18/bin/sqlcmd -S db -U sa -P "Arqui2026*Lab" -C
+      -i /scripts/ddl.sql,/scripts/dml.sql
+    restart: "no"
+
+  app:
+    build: ./personapi-dotnet
+    container_name: personapi-dotnet
+    depends_on:
+      db-init:
+        condition: service_completed_successfully
+    environment:
+      ASPNETCORE_ENVIRONMENT: "Development"
+      ConnectionStrings__PersonaDb: "Server=db,1433;Database=persona_db;User Id=sa;Password=Arqui2026*Lab;TrustServerCertificate=True"
+    ports:
+      - "5080:8080"
+
+volumes:
+  persona-data:
